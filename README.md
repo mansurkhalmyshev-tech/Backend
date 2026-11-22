@@ -6,7 +6,7 @@
 **Уровень:** Средний
 **Технология:** Node.js + Express
 **Ссылка на репозиторий** 
-https://github.com/mansurkhalmyshev-tech/Lab1-Backend/upload
+(https://github.com/mansurkhalmyshev-tech/Backend)
 
 
 ## Содержание
