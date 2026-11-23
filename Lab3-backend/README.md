@@ -317,7 +317,7 @@ app.listen(port, () => {
 #### 12. Пагинация (`GET /cars?page=1&limit=2`)
 Запрос: `GET http://localhost:3000/cars?page=1&limit=2`  
 Возвращает 1-ю страницу списка по 2 элемента на страницу (`totalPages: 3`).  
-![pagination](screenshots/pagination.png)
+![Pagination](screenshots/Pagination.png)
 
 #### 13. Обработка несуществующего маршрута (`Wildcard 404`)
 Запрос: `GET http://localhost:3000/unknown-route`  
