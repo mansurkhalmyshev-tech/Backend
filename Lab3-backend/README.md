@@ -21,7 +21,7 @@
       - [4. Ресурс не найден (`GET /cars/999` — 404 Not Found)](#4-ресурс-не-найден-get-cars999--404-not-found)
       - [5. Вложенный ресурс: владельцы (`GET /cars/:id/owners`)](#5-вложенный-ресурс-владельцы-get-carsidowners)
       - [6. Фильтрация по категории (`GET /brands/:brand/cars`)](#6-фильтрация-по-категории-get-brandsbrandcars)
-      - [7. Ошибка поиска по категории (`GET /brands/Lada/cars` — 404 Not Found)](#7-ошибка-поиска-по-категории-get-brandslaдacars--404-not-found)
+      - [7. Ошибка поиска по категории (`GET /brands/Lada/cars` — 404 Not Found)](#7-ошибка-поиска-по-категории-get-brandsladacars--404-not-found)
       - [8. Поиск и фильтрация по марке (`GET /cars?brand=Toyota`)](#8-поиск-и-фильтрация-по-марке-get-carsbrandtoyota)
       - [9. Фильтрация по году выпуска (`GET /cars?minYear=2021`)](#9-фильтрация-по-году-выпуска-get-carsminyear2021)
       - [10. Сортировка по убыванию цены (`GET /cars?sort=price&order=desc`)](#10-сортировка-по-убыванию-цены-get-carssortpriceorderdesc)
@@ -63,6 +63,9 @@
 
 ### Инициализация проекта и запуск сервера
 Проект был инициализирован с помощью `npm init -y`. Установлены зависимости `express` (`^5.3.0`) и `nodemon` (`^3.1.14`). В `package.json` настроены скрипты запуска:
+![Terminal1](screenshots/Terminal/Terminal1.png)
+![Terminal2](screenshots/Terminal/Terminal2.png)
+
 ```json
 "scripts": {
   "start": "node app.js",
@@ -256,62 +259,60 @@ app.listen(port, () => {
 
 ### Демонстрация работы API
 
-> **Примечание для репозитория:** сохраните ваши скриншоты в папку `screenshots/` с указанными ниже именами файлов (`cars-all.png`, `car-by-id.png` и т.д.), чтобы они корректно отображались на GitHub.
-
 #### 1. Получение всех автомобилей (`GET /cars`)
 Запрос: `GET http://localhost:3000/cars`  
 Возвращает полный список из 5 автомобилей с метаданными пагинации (`count: 5`, `page: 1`, `limit: 10`, `totalPages: 1`).  
-![cars-all](screenshots/cars-all.png)
+![cars_5](screenshots/cars_5.png)
 
 #### 2. Получение одного автомобиля по ID (`GET /cars/:id`)
 Запрос: `GET http://localhost:3000/cars/1`  
 Возвращает объект автомобиля BMW X5 (`id: 1`) с кодом `200 OK`.  
-![car-by-id](screenshots/car-by-id.png)
+![cars_1](screenshots/cars_1.png)
 
 #### 3. Ошибка валидации ID (`GET /cars/abc` — 400 Bad Request)
 Запрос: `GET http://localhost:3000/cars/abc`  
 Функция `parseId` проверяет параметр пути и при передаче нечислового значения возвращает статус `400 Bad Request` с текстом `ID должен быть положительным числом`.  
-![car-400](screenshots/car-400.png)
+![400](screenshots/400.png)
 
 #### 4. Ресурс не найден (`GET /cars/999` — 404 Not Found)
 Запрос: `GET http://localhost:3000/cars/999`  
 Автомобиль с указанным ID отсутствует в массиве, сервер возвращает статус `404 Not Found` с сообщением `Автомобиль не найден`.  
-![car-404](screenshots/car-404.png)
+![404](screenshots/404.png)
 
 #### 5. Вложенный ресурс: владельцы (`GET /cars/:id/owners`)
 Запрос: `GET http://localhost:3000/cars/1/owners`  
 Возвращает информацию об автомобиле (`BMW X5`) и список его владельцев из `ownersData` (`Иван Петров`).  
-![car-owners](screenshots/car-owners.png)
+![owner](screenshots/owner.png) 
 
 #### 6. Фильтрация по категории (`GET /brands/:brand/cars`)
 Запрос: `GET http://localhost:3000/brands/BMW/cars`  
 Возвращает все автомобили марки BMW (`X5` и `M3`, `count: 2`).  
-![brand-cars](screenshots/brand-cars.png)
+![BMW_2](screenshots/BMW_2.png)
 
 #### 7. Ошибка поиска по категории (`GET /brands/Lada/cars` — 404 Not Found)
 Запрос: `GET http://localhost:3000/brands/Lada/cars`  
 При передаче марки, отсутствующей в данных, сервер возвращает статус `404 Not Found` (`Марка "Lada" не найдена`).  
-![brand-404](screenshots/brand-404.png)
+![404_2](screenshots/404_2.png)
 
 #### 8. Поиск и фильтрация по марке (`GET /cars?brand=Toyota`)
 Запрос: `GET http://localhost:3000/cars?brand=Toyota`  
 Возвращает отфильтрованный список автомобилей марки Toyota (`Camry` и `Land Cruiser`, `count: 2`).  
-![filter-brand](screenshots/filter-brand.png)
+![Search](screenshots/Search.png)
 
 #### 9. Фильтрация по году выпуска (`GET /cars?minYear=2021`)
 Запрос: `GET http://localhost:3000/cars?minYear=2021`  
 Фильтрует коллекцию по условию `year >= 2021` (возвращает `BMW M3` 2021 г. и `Toyota Land Cruiser` 2023 г.).  
-![filter-year](screenshots/filter-year.png)
+![Filter by year](<screenshots/Filter by year.png>)
 
 #### 10. Сортировка по убыванию цены (`GET /cars?sort=price&order=desc`)
 Запрос: `GET http://localhost:3000/cars?sort=price&order=desc`  
 Сортирует весь список автомобилей по убыванию стоимости (от `9 500 000` до `3 200 000`).  
-![sort-price](screenshots/sort-price.png)
+![Sort](screenshots/Sort.png)
 
 #### 11. Ошибка валидации поля сортировки (`GET /cars?sort=color` — 400 Bad Request)
 Запрос: `GET http://localhost:3000/cars?sort=color`  
 Поле `color` отсутствует в белом списке `allowedSortFields`, поэтому сервер отклоняет запрос со статусом `400 Bad Request`.  
-![sort-400](screenshots/sort-400.png)
+![sort400](screenshots/sort400.png)
 
 #### 12. Пагинация (`GET /cars?page=1&limit=2`)
 Запрос: `GET http://localhost:3000/cars?page=1&limit=2`  
@@ -321,7 +322,7 @@ app.listen(port, () => {
 #### 13. Обработка несуществующего маршрута (`Wildcard 404`)
 Запрос: `GET http://localhost:3000/unknown-route`  
 Замыкающий middleware `app.use(...)` перехватывает обращение к любому неопределённому адресу и возвращает `404 Not Found` (`Маршрут не найден`).  
-![wildcard-404](screenshots/wildcard-404.png)
+![404_3](screenshots/404_3.png)
 
 ---
 
